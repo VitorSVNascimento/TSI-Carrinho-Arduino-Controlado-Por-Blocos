@@ -10,7 +10,7 @@
     <script src="blockly/blockly.min.js"></script>
     <script src="blocks.js" defer></script>
     <script src="script.js" defer></script>
-    <link rel="icon" type="image/x-icon" href="/assets/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.svg">
 </head>
 <body>
     <div class="flex flex-col h-screen bg-slate-100">
@@ -25,7 +25,10 @@
         </div>
         <div id="errorDiv" class="text-red-600 font-semibold text-center p-3 sm:p-4">&nbsp;</div>
         <div class="flex justify-center p-3 pt-0 sm:p-10 sm:pt-0 relative">
-            <button id="btnExecute" class="bg-sky-500 hover:bg-sky-700 focus:ring focus:ring-sky-300 text-slate-100 rounded-md shadow-md p-3">Executar</button>
+            <button id="btnExecute" class="bg-sky-500 hover:bg-sky-700 disabled:bg-sky-300 focus:ring focus:ring-sky-300 text-slate-100 rounded-md shadow-md p-3 flex gap-3 items-center">
+                <img id="loadingSpinner" class="animate-spin h-4 hidden" src="./assets/spinner.svg">
+                Executar
+            </button>
         </div>
     </div>
 </body>

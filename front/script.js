@@ -1,5 +1,6 @@
 const button = document.getElementById("btnExecute")
 const erroPilhas = document.getElementById("errorDiv")
+const loadingSpinner = document.getElementById("loadingSpinner")
 
 button.addEventListener("click", executarMovimentos)
 
@@ -25,10 +26,11 @@ function percorrerBlocosMovimento(blocoAtual, movimentos) {
 	}
 }
 
-function executarMovimentos() {
+async function executarMovimentos() {
 	if(!workspace.getTopBlocks().length) {
 		erroPilhas.innerHTML = 'Insira algum bloco'
 	} else if(apenasUmaPilhaBlocos()) {
+		toggleLoading()
 		retirarErro()
 		const ALL_BLOCKS = workspace.getAllBlocks()
 		const FIRST_BLOCK = ALL_BLOCKS[0]
@@ -36,11 +38,33 @@ function executarMovimentos() {
 		percorrerBlocosMovimento(FIRST_BLOCK, MOVIMENTOS['moves'])
 		
 		const MOVIMENTOS_JSON = JSON.stringify(MOVIMENTOS)
-
+		
 		console.log(MOVIMENTOS_JSON)
+		
+		try {
+			await fetch('http://localhost:5000/send-move-list', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: MOVIMENTOS_JSON
+			})
+		} catch (error) {
+			console.log(error)
+		}
+		toggleLoading()
 	} else {
 		exibirErroQuantidadePilhas()
 	}
+}
+
+function toggleLoading() {
+	if(button.getAttribute("disabled")) {
+		button.removeAttribute("disabled")
+	} else {
+		button.setAttribute("disabled", "true")
+	}
+	loadingSpinner.classList.toggle("hidden")
 }
 
 function exibirErroQuantidadePilhas() {
