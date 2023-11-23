@@ -1,6 +1,6 @@
 from flask import Flask,jsonify,make_response,request
 import json
-from bluetooth import send_to_arduino
+from api.bluetooth import send_to_arduino
 json_moves = {
     'frente': 1,
     'direita': 2,
@@ -10,11 +10,34 @@ json_moves = {
 
 MOVE_LIST_KEY = 'moves'
 MOVES_ARG = 'moves'
+LOOP_TYPE = 'dict'
+REPETITIONS_KEY = 'repetitions'
 
 app = Flask(__name__)
 
+def extract_moves(move_dict):
+   moves_list = []
+   for move in move_dict['moves']:
+       if isinstance(move, dict):
+           repetitions = int(move['repetitions'])
+           for _ in range(repetitions):
+               for movimento in extract_moves(move):
+                moves_list.append(movimento)
+       else:
+           moves_list.append(move)
+   return moves_list
+
 def for_arduino(moves):
-    return [json_moves[move] for move in moves[MOVE_LIST_KEY]]
+    move_list = []
+    for move in moves[MOVE_LIST_KEY]:
+        print(type(move))
+        if type(move) == type(json_moves):
+            for loop_move in extract_moves(move):
+                move_list.append(json_moves[loop_move])
+        else:
+            move_list.append(json_moves[move])    
+
+    return move_list
 
 @app.route('/send-move-list',methods=['GET','POST'])
 def send_move_list():
@@ -31,4 +54,5 @@ def send_move_list():
     return make_response(jsonify({'status':200}))
 
 
-app.run()
+# app.run()
+
