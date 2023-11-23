@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Blockly</title>
+    <script src="tailwind/tailwindcss.js"></script>
+    <script src="tailwind/tailwind.config.js"></script>
+    <script src="blockly/blockly.min.js"></script>
+    <script src="blocks.js" defer></script>
+    <script src="script.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.svg">
+</head>
+<body>
+    <div class="flex flex-col h-screen bg-slate-100">
+        <div class="flex justify-center p-3 sm:p-10">
+            <h2 class="text-2xl font-semibold text-sky-500 drop-shadow-sm">
+                Car Blockly
+            </h2>
+        </div>
+        <div class="h-full w-full" style="height: 100%; width: 100%;">
+            <div id="blocklyArea" class="h-full"  style="height: 100%; width: 100%;"></div>
+            <div id="blocklyDiv" class="absolute px-3 sm:px-10"></div>
+        </div>
+        <div id="errorDiv" class="text-red-600 font-semibold text-center p-3 sm:p-4">&nbsp;</div>
+        <div class="flex justify-center p-3 pt-0 sm:p-10 sm:pt-0 relative">
+            <button id="btnExecute" class="bg-sky-500 hover:bg-sky-700 focus:ring focus:ring-sky-300 text-slate-100 rounded-md shadow-md p-3">Executar</button>
+        </div>
+    </div>
+</body>
+</html>
