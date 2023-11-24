@@ -27,9 +27,9 @@ Blockly.Blocks["loop_block"] = {
             .appendField(new Blockly.FieldNumber(1, 1), "TIMES")
         const input = this.appendStatementInput("DO")
         input.appendField("vez(es)")
-        input.setCheck("movimentos");
-        this.setPreviousStatement(true, null)
-        this.setNextStatement(true, null)
+        input.setCheck("movimentos")
+        this.setPreviousStatement(true, "loop_block")
+        this.setNextStatement(true, "movimentos")
         this.setColour(90)
         this.setTooltip("")
         this.setHelpUrl("")
