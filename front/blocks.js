@@ -1,3 +1,5 @@
+const avisoPilhas = document.getElementById("warningDiv")
+
 Blockly.Blocks["movimentos"] = {
     init: function () {
         this.appendDummyInput()
@@ -15,8 +17,7 @@ Blockly.Blocks["movimentos"] = {
         this.setPreviousStatement(true, null)
         this.setNextStatement(true, null)
         this.setColour(225)
-        this.setTooltip("")
-        this.setHelpUrl("")
+        this.setTooltip("Bloco de movimento")
     },
 }
   
@@ -29,11 +30,39 @@ Blockly.Blocks["loop_block"] = {
         input.appendField("vez(es)")
         input.setCheck("movimentos")
         this.setPreviousStatement(true, "loop_block")
-        this.setNextStatement(true, "movimentos")
+        this.setNextStatement(true, null)
         this.setColour(90)
-        this.setTooltip("")
-        this.setHelpUrl("")
+        this.setTooltip("Bloco de repetição simples (ATENÇÃO: blocos de loop aninhados serão ignorados).")
+
+        this.setOnChange(function(event){
+            let reason = event.reason
+            if(reason){
+                if(reason.includes('connect')){
+                    let blocoDentroInput = this.getInputTargetBlock('DO');
+                    let temBlocosRepeticao = false
+                    if(blocoDentroInput){
+                        do{ 
+                            if(blocoDentroInput.type === 'loop_block'){
+                                temBlocosRepeticao = true
+                                break
+                            }
+                        }while (blocoDentroInput = blocoDentroInput.getNextBlock());
+                        if(temBlocosRepeticao){
+                            exibirAviso()
+                        }
+                    }
+                }
+            }
+            
+        }) 
+
+        
     }
+}
+
+function exibirAviso(){
+    erroPilhas.innerHTML = '&nbsp'
+    avisoPilhas.innerHTML = "Loops aninhados ou vazios não serão considerados!"
 }
 
 const toolbox = {
