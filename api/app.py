@@ -1,6 +1,7 @@
 from flask import Flask,jsonify,make_response,request
 import json
 from bluetooth import send_to_arduino
+from flask_cors import CORS
 json_moves = {
     'frente': 1,
     'direita': 2,
@@ -17,7 +18,7 @@ INIT_IF = 5
 END_IF = 6
 
 app = Flask(__name__)
-
+CORS(app,resources={r"/*":{"origins":"*"}})
 def extract_moves(move_dict):
 
     move_list = move_dict[MOVE_LIST_KEY]
