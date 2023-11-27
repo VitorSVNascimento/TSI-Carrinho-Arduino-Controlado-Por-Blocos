@@ -20,6 +20,53 @@ Blockly.Blocks["movimentos"] = {
         this.setTooltip("Bloco de movimento")
     },
 }
+
+Blockly.Blocks["if_block"] = {
+    init: function() {
+        this.appendDummyInput("se")
+            .appendField("Se sensor de distância menor ou igual a ")
+            .appendField(new Blockly.FieldDropdown([
+                ["1", "1"],
+                ["2", "2"],
+                ["3", "3"],
+                ["4", "4"],
+                ]),
+                "distancia")
+            .appendField("cm")
+        const input = this.appendStatementInput("if")
+        input.appendField("faça")
+        input.setCheck(["movimentos", "loop_block"])
+
+        this.setInputsInline(true)
+        this.setPreviousStatement(true, "if_block")
+        this.setNextStatement(true, null)
+        this.setColour(160)
+        this.setTooltip("Bloco de condição")
+
+        this.setOnChange(function(event){
+            let reason = event.reason
+            if(reason){
+                if(reason.includes('connect')){
+                    let blocoDentroInput = this.getInputTargetBlock('if');
+                    let temBlocoIf = false
+                    if(blocoDentroInput){
+                        do{ 
+                            if(blocoDentroInput.type === 'if_block'){
+                                temBlocoIf = true
+                                break
+                            }
+                        }while (blocoDentroInput = blocoDentroInput.getNextBlock());
+                        if(temBlocoIf){
+                            exibirAviso("Ifs aninhados ou vazios não serão considerados!")
+                        }
+                    }
+                }
+            }
+            
+        }) 
+        
+    }
+}
   
 Blockly.Blocks["loop_block"] = {
     init: function() {
@@ -28,7 +75,8 @@ Blockly.Blocks["loop_block"] = {
             .appendField(new Blockly.FieldNumber(1, 1), "TIMES")
         const input = this.appendStatementInput("DO")
         input.appendField("vez(es)")
-        input.setCheck("movimentos")
+        input.setCheck(["movimentos", "if_block"])
+
         this.setPreviousStatement(true, "loop_block")
         this.setNextStatement(true, null)
         this.setColour(90)
@@ -48,7 +96,7 @@ Blockly.Blocks["loop_block"] = {
                             }
                         }while (blocoDentroInput = blocoDentroInput.getNextBlock());
                         if(temBlocosRepeticao){
-                            exibirAviso()
+                            exibirAviso("Loops aninhados ou vazios não serão considerados!")
                         }
                     }
                 }
@@ -60,9 +108,9 @@ Blockly.Blocks["loop_block"] = {
     }
 }
 
-function exibirAviso(){
+function exibirAviso(aviso){
     erroPilhas.innerHTML = '&nbsp'
-    avisoPilhas.innerHTML = "Loops aninhados ou vazios não serão considerados!"
+    avisoPilhas.innerHTML = aviso
 }
 
 const toolbox = {
@@ -75,6 +123,10 @@ const toolbox = {
         {
             "kind": "block",
             "type": "loop_block"
+        },
+        {
+            "kind": "block",
+            "type": "if_block"
         }
     ]
 }
