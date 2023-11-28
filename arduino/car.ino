@@ -76,23 +76,24 @@ void setup() {
 
 void loop() {
 
+  // Verificação e leitura dos possíveis comandos recebidos via Bluetooth.
+  if (bluetoothSerial.available()) {
+    char chunk = (char)bluetoothSerial.read();
+
+    // Verifica se o comando completo foi recebido.
+    if (chunk == BLUETOOTH_CONTROL_FLAG) {
+      // Executa os comandos recebidos.
+      executeCommand(command);
+
+      // Limpa o buffer de entrada.
+      command = "";
+    } else
+      // Armazena o próximo comando (char), parte do comando completo.
+      command += chunk;
+  }
+
   if(!hasSpaceToMove(7))
     forward(MOVE_TIME);
-  // Verificação e leitura dos possíveis comandos recebidos via Bluetooth.
-  // if (bluetoothSerial.available()) {
-  //   char chunk = (char)bluetoothSerial.read();
-
-  //   // Verifica se o comando completo foi recebido.
-  //   if (chunk == BLUETOOTH_CONTROL_FLAG) {
-  //     // Executa os comandos recebidos.
-  //     executeCommand(command);
-
-  //     // Limpa o buffer de entrada.
-  //     command = "";
-  //   } else
-  //     // Armazena o próximo comando (char), parte do comando completo.
-  //     command += chunk;
-  // }
 
   // COMENTÁRIO: bluetoothSerial.write() efetua o envio (via bluetooth) do arduino para o dispositivo conectado.
   // if (Serial.available()) {
@@ -101,12 +102,36 @@ void loop() {
   // }
 }
 
+/*
+ Executa uma série de movimentos no carrinho, de acordo com a lista de comandos recebida.
+
+ param command: String contendo a lista de comandos, um por caracter.
+*/
 void executeCommand(String command) {
   for (int i = 0; i < command.length(); i++) {
-    int move = ((int)command.charAt(i)) - ASCII_BASE;
+    int move = parseCharToInt(command.charAt(i));
+
+    // Checando o comando IF
+    if(move == COMM_STT_IF) {
+        if(!hasSpaceToMove(parseCharToInt(command.charAt(++i))))
+            while(parseCharToInt(command.charAt(++i)) != COMM_END_IF);
+        continue;
+    } else if(move == COMM_END_IF) continue;
 
     executeMove(move);
   }
+} 
+
+/*
+ Converte um caracter para seu respectivo valor inteiro.
+ Baseado nos valores descritos na tabela ASCII.
+
+ param move: Caracter a ser convertido.
+
+ return: O valor ASCII (int) do caracter.
+*/
+int parseCharToInt(char move) {
+    return ((int) move) - ASCII_BASE;
 }
 
 /*
@@ -147,6 +172,15 @@ void backward(int time) {
   turnOffBackwardLights();
 }
 
+/*
+ Utiliza o sensor de proximidade para checar se há obstáculos à frente.
+ Caso exista um obstáculo e o mesmo esteja à uma distância menor que 'minimumDistance'
+ a função retorna false, caso contrário retorna true.
+
+ param minimumDistance: Distância minima para executar o movimento.
+
+ return: false caso exista um obstáculo a uma distancia menor que 'minimumDistance', caso contrário retorna true.
+*/
 bool hasSpaceToMove(int minimumDistance) {
   // Efetuando a leitura
   digitalWrite(PULSE_EMITTER, HIGH);
@@ -155,8 +189,7 @@ bool hasSpaceToMove(int minimumDistance) {
 
   // Calculando a distância
   int distance = (pulseIn(PULSE_LISTENER, HIGH) / 29) / 2 ;//* 0.017175;
-  
-  return distance <= minimumDistance;
+  return distance >= minimumDistance;
 }
 
 /*
