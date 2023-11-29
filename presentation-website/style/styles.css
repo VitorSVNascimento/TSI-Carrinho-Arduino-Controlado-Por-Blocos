@@ -1,4 +1,27 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
 p{
     text-indent: 5%;
 }
 
+.darkenTextOnHover:hover {
+    filter: brightness(50%);
+}
+
+#icon_id {
+    cursor: pointer;
+}
+
+.dark .navbar{
+    background-color: black;
+}
+
+@media (width <= 576px) {
+    iframe {
+        width: 100%;
+        height: 20vh;
+    }
+}

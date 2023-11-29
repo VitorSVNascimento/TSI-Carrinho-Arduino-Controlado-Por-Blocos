@@ -1,20 +1,21 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <title>Veículo Arduino - Apresentação</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/c0eef54d20.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style/styles.css">
+    <title>Veículo Arduino - Apresentação</title>
 </head>
 <body>    
     <nav class="navbar navbar-expand-lg navbar-light bg-info">
-        <a class="navbar-brand text-light" href="#">Veículo Arduino controlado via API</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
+        <div class="collapse navbar-collapse justify-content-md-center" id="navbarNav">
+            <ul class="navbar-nav d-flex align-items-center">
+                <i id="icon_id" class="darkenTextOnHover text-white fa-lg fa-solid fa-sun m-2" aria-hidden="true" role="button" onclick="toggleTheme()"></i>
                 <li class="nav-item active"><a class="nav-link text-light" href="#home">Início</a></li>
                 <li class="nav-item"><a class="nav-link text-light" href="#documentacao">Documentação</a></li>
                 <li class="nav-item"><a class="nav-link text-light" href="#github">GitHub</a></li>
@@ -23,9 +24,9 @@
         </div>
     </nav>
 
-    <div class="container bg-light text-justify">
+    <div class="container text-justify py-3">
         <section id="home" class="container">
-            <h2 class="mt-2">Veículo Arduino Controlado por API</h2>
+            <h1 class="mt-2">Veículo Arduino Controlado por API</h1>
             <p>Neste projeto, desenvolvemos um robô Arduino controlado por API com várias funcionalidades...</p>
         </section>
 
@@ -57,7 +58,7 @@
         <section class="container mt-5">
             <h2>Apresentação do Projeto</h2>
             <p>Assista à nossa apresentação em vídeo para ter uma visão detalhada do projeto. Neste vídeo, explicamos a estrutura do robô Arduino, seus recursos, a API HTTP desenvolvida para comunicação e a interface de programação em blocos visuais usando a biblioteca Blockly. É uma oportunidade para conhecer de perto o funcionamento e a inovação por trás do projeto.</p>
-            <p class="text-center"><iframe width="560" height="315" src="https://www.youtube.com/embed/SEU_ID_DE_VIDEO" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+            <div class="d-flex justify-content-center mt-4"><iframe width="560" height="315" src="https://www.youtube.com/embed/SEU_ID_DE_VIDEO" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
         </section>
 
         <section id="documentacao" class="container mt-5">
@@ -80,10 +81,6 @@
             <p>Todo o código-fonte do projeto está disponível em nosso repositório no GitHub. Contribua, forneça feedback ou simplesmente explore o código para entender a implementação. O GitHub oferece uma plataforma colaborativa para o desenvolvimento de software, e sua participação é bem-vinda.</p>
         </section>
 
-        <section class="container mt-5">
-            <h2>Instruções de Instalação</h2>
-            <p>Para começar a explorar e executar o projeto em seu próprio ambiente, siga as instruções de instalação detalhadas no README do nosso repositório no GitHub. Essas orientações garantem uma configuração correta e uma experiência suave com o veículo robô Arduino.</p>
-        </section>
     </div>
     <footer class="mt-auto bg-info text-light" id="contato">
         <div class="container">
@@ -99,14 +96,22 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                             <!-- Adicionar outros membros em ordem alfabética. -->
+                            <li><a class="dropdown-item footer-github-link" href="https://github.com/carenferreira"
+                                    target="_blank">Caren Ferreira</a></li>
                             <li><a class="dropdown-item footer-github-link" href="https://github.com/IgorAuguusto"
                                     target="_blank">Igor Augusto</a></li>
+                            <li><a class="dropdown-item footer-github-link" href="https://github.com/ja1za1"
+                                    target="_blank">João Lucas</a></li>
                             <li><a class="dropdown-item footer-github-link" href="https://github.com/LeticiaKOSilva"
                                     target="_blank">Letícia Karen</a></li>
+                            <li><a class="dropdown-item footer-github-link" href="https://github.com/pedrocota"
+                                    target="_blank">Pedro Henrique</a></li>
                             <li><a class="dropdown-item footer-github-link" href="https://github.com/ViniciusJPSilva"
                                     target="_blank">Vinícius Pires</a></li>
                             <li><a class="dropdown-item footer-github-link" href="https://github.com/VitorSVNascimento"
                                     target="_blank">Vitor Nascimento</a></li>
+                            <li><a class="dropdown-item footer-github-link" href="https://github.com/VitorST1"
+                                    target="_blank">Vitor Silvestre</a></li>
                             <li><a class="dropdown-item footer-github-link" href="https://github.com/YuryOAraujo"
                                     target="_blank">Yury Araújo</a></li>
                         </ul>
@@ -119,7 +124,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
     crossorigin="anonymous"></script>
@@ -129,5 +133,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
     crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
