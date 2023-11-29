@@ -7,9 +7,14 @@ moves_test = {
     },
     {
         'condition': 1,
-        'moves' : [ 'frente','ré',]
+        'moves' : [ 'frente','ré',{
+            'repetitions':'2',
+            'moves':['direita','esquerda']
+        }]
     }
     ]
 }
 
 print(for_arduino(moves_test))
+
+#132111111111111511324246
