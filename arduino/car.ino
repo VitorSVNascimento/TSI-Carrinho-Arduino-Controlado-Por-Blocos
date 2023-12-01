@@ -28,24 +28,36 @@ AF_DCMotor motor4(4);  // Motor 4 connected to M7 and M8 pins
 // Controle dos comandos enviados/recebidos
 #define BLUETOOTH_CONTROL_FLAG '\n'
 
+// LED de controle do bluetooth
+#define BT_LED_RED 40
+#define BT_LED_GREEN 38
+
 // Valor base de conversão ASCII
 #define ASCII_BASE 48
 
 // Valor de tempo padrão de cada movimento (em segundos).
-#define MOVE_TIME 3
+#define MOVE_TIME 1
 
 // Constantes dos leds.
-const int RED_LIGHT_PIN = 41,
-          GREEN_LIGHT_PIN = 39,
-          BLUE_LIGHT_PIN = 43,
-          WHITE_LIGHT_PIN = 37;
+#define RED_LIGHT_PIN 41
+#define GREEN_LIGHT_PIN 39
+#define BLUE_LIGHT_PIN 43
+#define WHITE_LIGHT_PIN 37
+
+// Piezo: som de ré
+#define BACKWARD_PIEZO 48
+#define PIEZO_FREQUENCY 400
 
 // ENUM: Cores
 enum Colors { RED,
               WHITE };
 
+// Pinos RX e TX o Bluetooth
+#define BT_RX A11
+#define BT_TX A10
+
 // Variável Serial de configuração do Bluetooth.
-SoftwareSerial bluetoothSerial(A11, A10);  // RX, TX
+SoftwareSerial bluetoothSerial(BT_RX, BT_TX);  // RX, TX
 
 // Buffer de entrada Bluetooth.
 String command = "";
@@ -56,9 +68,14 @@ void setup() {
   motor3.setSpeed(MOTORS_SPEED);
   motor4.setSpeed(MOTORS_SPEED);
 
+  pinMode(BT_LED_GREEN, OUTPUT);
+  pinMode(BT_LED_RED, OUTPUT);
+
   pinMode(RED_LIGHT_PIN, OUTPUT);
   pinMode(GREEN_LIGHT_PIN, OUTPUT);
   pinMode(BLUE_LIGHT_PIN, OUTPUT);
+
+  pinMode(BACKWARD_PIEZO, OUTPUT);
 
   pinMode(PULSE_EMITTER, OUTPUT);
   pinMode(PULSE_LISTENER, INPUT);
@@ -68,6 +85,8 @@ void setup() {
   motor3.run(RELEASE);
   motor4.run(RELEASE);
 
+  setBluetoothLed(false);
+  turnOnBreakLights();
 
   Serial.begin(115200);
   Serial.println("Type AT commands!");
@@ -78,6 +97,9 @@ void loop() {
 
   // Verificação e leitura dos possíveis comandos recebidos via Bluetooth.
   if (bluetoothSerial.available()) {
+    setBluetoothLed(true);
+    turnOffBreakLights();
+
     char chunk = (char)bluetoothSerial.read();
 
     // Verifica se o comando completo foi recebido.
@@ -90,10 +112,16 @@ void loop() {
     } else
       // Armazena o próximo comando (char), parte do comando completo.
       command += chunk;
+
+    setBluetoothLed(false);
+    turnOnBreakLights();
   }
 
-  if(!hasSpaceToMove(7))
-    forward(MOVE_TIME);
+  // delay(1000);
+  // if(hasSpaceToMove(7))
+  //   forward(MOVE_TIME);
+  // else 
+  //   backward(MOVE_TIME);
 
   // COMENTÁRIO: bluetoothSerial.write() efetua o envio (via bluetooth) do arduino para o dispositivo conectado.
   // if (Serial.available()) {
@@ -113,7 +141,7 @@ void executeCommand(String command) {
 
     // Checando o comando IF
     if(move == COMM_STT_IF) {
-        if(!hasSpaceToMove(parseCharToInt(command.charAt(++i))))
+        if(hasSpaceToMove(parseCharToInt(command.charAt(++i))))
             while(parseCharToInt(command.charAt(++i)) != COMM_END_IF);
         continue;
     } else if(move == COMM_END_IF) continue;
@@ -167,9 +195,11 @@ void forward(int time) {
 */
 void backward(int time) {
   turnOnBackwardLights();
+  tone(BACKWARD_PIEZO, PIEZO_FREQUENCY);
   stop();
   changeAllMotorsStateTimed(BACKWARD, time);
   turnOffBackwardLights();
+  noTone(BACKWARD_PIEZO);
 }
 
 /*
@@ -189,6 +219,7 @@ bool hasSpaceToMove(int minimumDistance) {
 
   // Calculando a distância
   int distance = (pulseIn(PULSE_LISTENER, HIGH) / 29) / 2 ;//* 0.017175;
+  Serial.println(distance);
   return distance >= minimumDistance;
 }
 
@@ -264,7 +295,11 @@ void turn(int direction) {
   if (direction == COMM_LEFT) {
     motor1.run(FORWARD);
     motor4.run(FORWARD);
+    motor2.run(BACKWARD);
+    motor3.run(BACKWARD);
   } else if (direction == COMM_RIGHT) {
+    motor1.run(BACKWARD);
+    motor4.run(BACKWARD);
     motor2.run(FORWARD);
     motor3.run(FORWARD);
   }
@@ -337,4 +372,19 @@ void turnOffRGB() {
   digitalWrite(RED_LIGHT_PIN, LOW);
   digitalWrite(GREEN_LIGHT_PIN, LOW);
   digitalWrite(BLUE_LIGHT_PIN, LOW);
+}
+
+/*
+ Altera o status do LED indicador do status do bluetooth.
+
+ param isOn: Status do bluetooth.
+*/
+void setBluetoothLed(bool isOn) {
+  digitalWrite(BT_LED_GREEN, LOW);
+  digitalWrite(BT_LED_RED, LOW);
+
+  if (isOn)
+    digitalWrite(BT_LED_GREEN, HIGH);
+  else
+    digitalWrite(BT_LED_RED, HIGH);
 }
