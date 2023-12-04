@@ -2,7 +2,7 @@
  Carrinho arduino controlados pelos blocos da API blockly
 
 ## Proposta do Projeto
- Projeto desenvolvido para a disciplina de WebServices, lecionada pelo professor Rafael
+ Projeto desenvolvido para a disciplina de WebServices, lecionada pelo professor Rafael.
  - O projeto consiste em:
    
    | | ÁREA | DESCRIÇÃO | |
@@ -13,6 +13,7 @@
    || Envio das informações pela API HTTP Restful para a placa Arduino | Utilizar o módulo de Bluetooth ou o de Wi-Fi. ||
    || Comunicação com a API | Interface Web utilizando a biblioteca Blockly1, com blocos personalizados que permitam controlar o veículo robô. ||
    || Interface Web | A ideia é reproduzir o jogo Labirinto2 do Blockly Games (Como ilustra a imagem logo abaixo), mas com um robô de verdade. ||
-   
+
+   <img src="https://github.com/VitorSVNascimento/TSI-Carrinho-Arduino-Controlado-Por-Blocos/blob/main/Imagens/Blockly_Games.png" width="980px">
   
 
