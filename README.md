@@ -27,15 +27,24 @@
      | | ÁREA | DESCRIÇÃO | |
      | --- | --- | --- | --- |
      || Arduino | Desenvolvimento dos métodos que permitiam o robô andar para frente, ré, direita e esquerda feitas com a Linguagem de Programação C++ ||
-     || Componentes Arduino | Recursos mínimos: sensor de distância na parte frontal, luz e sinal sonoro de ré, e um led RGB para indicar seus status(conectado/verde ou desconectado/vermelho à API). ||
-     || API HTTP Restful | A API HTTP Restful deve possibilitar o  envio de informações para o robô, como andar para frente, virar para a esquerda, checar se há algum objeto à frente. ||
-     || Envio das informações pela API HTTP Restful para a placa Arduino | Utilizar o módulo de Bluetooth ou o de Wi-Fi. ||
-     || Comunicação com a API | Interface Web utilizando a biblioteca Blockly1, com blocos personalizados que permitam controlar o veículo robô. ||
-     || Interface Web | A ideia é reproduzir o jogo Labirinto2 do Blockly Games (Como ilustra a imagem logo abaixo), mas com um robô de verdade. ||
+     || Componentes Arduino | ||
+     || API HTTP Restful | ||
+     || Envio das informações pela API HTTP Restful para a placa Arduino |  ||
+     || Comunicação com a API |  ||
+     || Interface Web |  ||
 
   ## Colaboradores do Projeto
    - A seguir a tabela contém um link para o repositório de todos os colaboradores desse projeto.
 
-      || NOME | LINK ||
+      || NOME | LINK DO  GITHUB ||
       | --- | --- | --- | --- |
+      || Caren Ferreira | https://github.com/carenferreira ||
+      || Igor Augusto | https://github.com/IgorAuguusto ||
+      || João Lucas | https://github.com/ja1za1 ||
+      || Letícia Oliveira | https://github.com/LeticiaKOSilva ||
+      || Pedro Henrique | ||
+      || Vinícius José | https://github.com/ViniciusJPSilva ||
+      || Vitor Samuel | https://github.com/VitorSVNascimento ||
+      || Vitor Silvestre | https://github.com/VitorST1 ||
+      || Yury Oliveira | https://github.com/YuryOAraujo ||
      
