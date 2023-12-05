@@ -1,8 +1,8 @@
 # TSI-Carrinho-Arduino-Controlado-Por-Blocos
- Carrinho arduino controlados pelos blocos da API blockly
+ Veículo Arduino controlado via API em uma interface de programação em blocos (Blockly1).
 
 ## Proposta do Projeto
- Projeto desenvolvido para a disciplina de WebServices, lecionada pelo professor Rafael.
+ Projeto desenvolvido para a disciplina de WebServices, lecionada pelo professor [Rafael](https://github.com/rafjaa).
  - O projeto consiste em:
    
    | | ÁREA | DESCRIÇÃO | |
@@ -17,7 +17,7 @@
    <img src="https://github.com/VitorSVNascimento/TSI-Carrinho-Arduino-Controlado-Por-Blocos/blob/main/Imagens/Blockly_Games.png" width="980px">
   
   ## Resultados do Projeto
-   - A seguir apresentaremos algumas imagens e vídeo do carrinho robô funcionando.
+   - A seguir algumas imagens e um vídeo do carrinho em funcionamento.
 
      <img src="https://github.com/VitorSVNascimento/TSI-Carrinho-Arduino-Controlado-Por-Blocos/blob/main/Imagens/carrinho_robo.jpeg" width="980px">
 
@@ -25,29 +25,38 @@
    - Caso queira saber mais sobre o funcionamento do carrinho acesse o link a seguir:
 
 
-  ## Um pouco mais sobre o densenvolvimento do Projeto (Parte mais técnica)
-   - Na tabela a seguir será feita a exblicação de como resolvemos os requisitos mencionados na Proposta do projeto.
-     | | ÁREA | DESCRIÇÃO | |
-     | --- | --- | --- | --- |
-     || Arduino | Desenvolvimento dos métodos que permitiam o robô andar para frente, ré, direita e esquerda feitas com a Linguagem de Programação C++ ||
-     || Componentes Arduino | ||
-     || API HTTP Restful | ||
-     || Envio das informações pela API HTTP Restful para a placa Arduino |  ||
-     || Comunicação com a API |  ||
-     || Interface Web |  ||
+  ## Informações técnicas: 
+  - Arduino: C++
+  - API: Python
+  - Front-end: HTML, CSS, JavaScript
 
+  ## Instruções de instalação e execução
+  Para execução do presente projeto, é necesário a construção do carrio arduino. Após isso, baixe ou clone esse repositório e siga as instruções:
+  1) Criar o ambiente virtual 
+  ```bash
+  python -m venv venv
+  ```
+  2) Ativar o ambiente virtual
+  ```bash
+  ./venv/Scripts/activate
+  ```
+ 3) Instalar as bibliotecas necessárias
+  ```bash
+  pip install -r requirements.txt
+  ```
+ 4) Modificar a constante BLUETHOOTH_PORT no arquivo ./api/bluethooth.py para a porta COM correspondente no seu dispositivo
+ 5) Com o ambiente virtual ativado execute o arquivo de inicialização da api
+ ```bash
+  python ./api/app.py
+  ```
   ## Colaboradores do Projeto
-   - A seguir a tabela contém um link para o repositório de todos os colaboradores desse projeto.
-
-      || NOME | LINK DO  GITHUB ||
-      | --- | --- | --- | --- |
-      || Caren Ferreira | https://github.com/carenferreira ||
-      || Igor Augusto | https://github.com/IgorAuguusto ||
-      || João Lucas | https://github.com/ja1za1 ||
-      || Letícia Oliveira | https://github.com/LeticiaKOSilva ||
-      || Pedro Henrique | https://github.com/pedrocota ||
-      || Vinícius José | https://github.com/ViniciusJPSilva ||
-      || Vitor Samuel | https://github.com/VitorSVNascimento ||
-      || Vitor Silvestre | https://github.com/VitorST1 ||
-      || Yury Oliveira | https://github.com/YuryOAraujo ||
+   - [Caren Ferreira](https://github.com/carenferreira)
+   - [Igor Augusto](https://github.com/IgorAuguusto)
+   - [João Lucas](https://github.com/ja1za1)
+   - [Letícia Oliveira](https://github.com/LeticiaKOSilva)
+   - [Pedro Henrique](https://github.com/pedrocota)
+   - [Vinícius José](https://github.com/ViniciusJPSilva)
+   - [Vitor Samuel](https://github.com/VitorSVNascimento)
+   - [Vitor Silvestre](https://github.com/VitorST1)
+   - [Yury Oliveira](https://github.com/YuryOAraujo) 
      
