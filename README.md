@@ -42,7 +42,7 @@
       || Igor Augusto | https://github.com/IgorAuguusto ||
       || João Lucas | https://github.com/ja1za1 ||
       || Letícia Oliveira | https://github.com/LeticiaKOSilva ||
-      || Pedro Henrique | ||
+      || Pedro Henrique | https://github.com/pedrocota ||
       || Vinícius José | https://github.com/ViniciusJPSilva ||
       || Vitor Samuel | https://github.com/VitorSVNascimento ||
       || Vitor Silvestre | https://github.com/VitorST1 ||
