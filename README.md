@@ -17,12 +17,12 @@
    <img src="https://github.com/VitorSVNascimento/TSI-Carrinho-Arduino-Controlado-Por-Blocos/blob/main/Imagens/Blockly_Games.png" width="980px">
   
   ## Resultados do Projeto
-   - A seguir algumas imagens e um vídeo do carrinho em funcionamento.
+   - A seguir algumas imagens do carrinho.
 
      <img src="https://github.com/VitorSVNascimento/TSI-Carrinho-Arduino-Controlado-Por-Blocos/blob/main/Imagens/carrinho_robo.jpeg" width="980px">
 
      <img src="https://github.com/VitorSVNascimento/TSI-Carrinho-Arduino-Controlado-Por-Blocos/blob/main/Imagens/carrinho_frente.png" width="980px"/>
-   - Caso queira saber mais sobre o funcionamento do carrinho acesse o link a seguir:
+   - Caso queira saber mais sobre o funcionamento do carrinho clique [aqui!](https://carenferreira.github.io/)
 
 
   ## Informações técnicas: 
