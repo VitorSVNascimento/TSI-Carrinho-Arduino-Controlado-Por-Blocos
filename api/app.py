@@ -1,6 +1,7 @@
 from flask import Flask,jsonify,make_response,request
 import json
-# from bluetooth import send_to_arduino
+
+from bluetooth import send_to_arduino
 from flask_cors import CORS
 json_moves = {
     'frente': 1,
@@ -71,8 +72,8 @@ def send_move_list():
     # for move in encode_moves:
     #     encode_string+=str(move)
 
-    # send_to_arduino(encode_string)
+    send_to_arduino(encode_string)
     return make_response(jsonify({'status':200}))
 
 
-# app.run()
+app.run()
