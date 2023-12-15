@@ -1,6 +1,10 @@
 # TSI-Carrinho-Arduino-Controlado-Por-Blocos
  Veículo Arduino controlado via API em uma interface de programação em blocos (Blockly1).
 
+<p align="center">
+  <img src="https://github.com/VitorSVNascimento/TSI-Carrinho-Arduino-Controlado-Por-Blocos/blob/main/Imagens/carrinho_frente.png"/>
+</p>
+ 
 ## Proposta do Projeto
  Projeto desenvolvido para a disciplina de WebServices, lecionada pelo professor [Rafael](https://github.com/rafjaa).
  - O projeto consiste em:
@@ -17,11 +21,15 @@
    <img src="https://github.com/VitorSVNascimento/TSI-Carrinho-Arduino-Controlado-Por-Blocos/blob/main/Imagens/Blockly_Games.png" width="980px">
   
   ## Resultados do Projeto
-   - A seguir algumas imagens do carrinho.
+   - A seguir uma imagem e um vídeo do carrinho em funcionamento.
+   - Imagem
 
      <img src="https://github.com/VitorSVNascimento/TSI-Carrinho-Arduino-Controlado-Por-Blocos/blob/main/Imagens/carrinho_robo.jpeg" width="980px">
 
-     <img src="https://github.com/VitorSVNascimento/TSI-Carrinho-Arduino-Controlado-Por-Blocos/blob/main/Imagens/carrinho_frente.png" width="980px"/>
+   - Vídeo
+
+
+    
    - Caso queira saber mais sobre o funcionamento do carrinho clique [aqui!](https://carenferreira.github.io/)
 
 
