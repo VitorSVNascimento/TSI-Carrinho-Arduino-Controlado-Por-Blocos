@@ -27,8 +27,8 @@
      <img src="https://github.com/VitorSVNascimento/TSI-Carrinho-Arduino-Controlado-Por-Blocos/blob/main/Imagens/carrinho_robo.jpeg" width="980px">
 
    - Vídeo
-
-
+     
+     https://github.com/VitorSVNascimento/TSI-Carrinho-Arduino-Controlado-Por-Blocos/assets/129966396/ad63cf75-0a25-4637-8585-227ea1ff3808
     
    - Caso queira saber mais sobre o funcionamento do carrinho clique [aqui!](https://carenferreira.github.io/)
 
@@ -67,4 +67,8 @@
    - [Vitor Samuel](https://github.com/VitorSVNascimento)
    - [Vitor Silvestre](https://github.com/VitorST1)
    - [Yury Oliveira](https://github.com/YuryOAraujo) 
+
      
+
+
+
